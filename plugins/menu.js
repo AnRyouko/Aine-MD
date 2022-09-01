@@ -8,7 +8,7 @@ let tags = {
   'rpgabsen': 'Rpg-Absen',
   'rpg': 'Rpg',
   'game': 'Game',
-  'xp': 'Exp, Limit & Pay',
+  // 'xp': 'Exp, Limit & Pay',
   'sticker': 'Sticker',
   'main': 'Main',
   'kerang': 'Kerang Ajaib',
@@ -26,9 +26,9 @@ let tags = {
   'absen': 'Absen',
   'catatan': 'Catatan',
   'jadian': 'Jadian',
-  'islami': 'Islami',
+  // 'islami': 'Islami',
   'owner': 'Owner',
-  'advanced': 'Advanced',
+  // 'advanced': 'Advanced',
   'info': 'Info',
   'audio': 'Audio',
   'maker': 'Maker',
@@ -37,25 +37,16 @@ const defaultMenu = {
   before: `
 Hai, %ucapan %name! 👋
   
-*Waktu:* 
-%wib WIB
-%wita WITA
-%wit WIT
+*Waktu:* %wib WIB
 *Hari:* %week
 *Tanggal:* %date
-*Uptime:* %uptime (%muptime)
 
-*Limit:* %limit
-*Level:* %level
-*XP:* %exp
 %readmore`.trimStart(),
   header: ' *%category*',
-  body: ' • %cmd %islimit %isPremium',
+  // body: ' • %cmd %islimit %isPremium',
+  body: ' • %cmd',
   footer: '\n',
-  after: `*Made by ♡*
-*%npmname* | %version
-${'```%npmdesc```'}
-`,
+  after: `${'```%npmdesc```'}`
 }
 let handler = async (m, { conn, usedPrefix: _p }) => {
   try {
@@ -157,7 +148,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    conn.sendButton(m.chat, text.trim(), 'Made with ♡ by Aine', null, [['Donasi', '.donasi'],['Owner', '.owner']], m)
+    conn.sendText(m.chat, text.trim(), m)
     /*conn.sendHydrated(m.chat, text.trim(), 'Ⓟ premium | Ⓛ limit', null, 'https://aiinne.github.io/', 'Website', '', '', [
       ['Donate', '/donasi'],
       ['Sewa Bot', '/sewa'],

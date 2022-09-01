@@ -730,10 +730,10 @@ module.exports = {
                         fail('mods', m, this)
                         continue
                     }
-                    if (plugin.premium && !isPrems) { // Premium
-                        fail('premium', m, this)
-                        continue
-                    }
+                    // if (plugin.premium && !isPrems) { // Premium
+                    //     fail('premium', m, this)
+                    //     continue
+                    // }
                     if (plugin.banned && !isBans) { // Banned
                         fail('banned', m, this)
                         continue
@@ -839,7 +839,7 @@ module.exports = {
             if (m) {
                 if (m.sender && (user = db.data.users[m.sender])) {
                     user.exp += m.exp
-                    user.limit -= m.limit * 1
+                    // user.limit -= m.limit * 1
                 }
 
                 let stat
